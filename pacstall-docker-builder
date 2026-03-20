@@ -307,7 +307,7 @@ fi
 function cat_built_dock {
   cat > ${built_dock} << EOF
 FROM ${base_darch}${base_distro}
-LABEL org.opencontainers.image.description "Contains pacstall:${imgver} from ${dateiniso}"
+LABEL org.opencontainers.image.description="Contains pacstall:${imgver} from ${dateiniso}"
 
 SHELL ["/bin/bash", "-l", "-c"]
 ARG DEBIAN_FRONTEND=noninteractive
