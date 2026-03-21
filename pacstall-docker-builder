@@ -315,12 +315,13 @@ ENV TZ="Africa/Libreville"
 RUN ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime && echo \$TZ > /etc/timezone
 ARG package="pacstall"
 
+RUN dpkg-divert --rename --remove /usr/bin/man
 RUN if [[ \$(dpkg --print-architecture) == "amd64" ]]; then \
         dpkg --add-architecture i386; \
     fi && \
     apt-get update && \
     apt-get dist-upgrade -y && \
-    apt-get install wget curl git sudo nano ca-certificates util-linux adduser -y --fix-missing --no-install-recommends && \
+    apt-get install wget curl git sudo nano ca-certificates util-linux adduser man-db -y --fix-missing --no-install-recommends && \
     apt-get clean && \
     apt-get autoclean && \
     apt-get autoremove -y
